@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="general_ledger_report_menu"
+    name="General Ledger Report"
+    parent="account_reports.account_reports_audit_reports_menu"
+    sequence="2"
+    action="general_ledger_report_customizationv.action_general_ledger_report_view" />
+</odoo>

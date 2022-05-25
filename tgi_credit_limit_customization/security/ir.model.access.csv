@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+tgi_credit_limit_customization.access_saleorder_wizard,access_saleorder_wizard,tgi_credit_limit_customization.model_saleorder_wizard,base.group_user,1,1,1,1

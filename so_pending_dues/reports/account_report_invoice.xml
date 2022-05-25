@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <!-- inherit form report for account_report_invoice_with_payments_report -->
+
+    <template id="report_invoice_with_payments_report" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[@class='clearfix']" position="after">
+            <div class="w-50 p-3">
+            <t t-if="o.is_panding">
+                <h3>Pending Dues</h3> 
+                <table class="table table-sm table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Sale Order NO</th>
+                            <th> Amount</th> 
+                            
+                        </tr>
+                    </thead>
+                    <tbody class="sale_tbody">
+                        <t t-foreach="o.get_pending_so_values()" t-as="so_val">
+                            <t t-set="name" t-value="so_val['name']"/>
+                            <t t-set="amount" t-value="so_val['amount']"/>
+                        <t t-if="amount > 0">
+                          <tr>
+                            <td >
+                                <t t-esc="name"/>
+                             </td>
+                            <td>
+                                <t t-esc="amount"/>
+                            </td>
+                            
+                         </tr>  
+                        </t>
+                        </t>
+                    </tbody>
+                </table> 
+            </t>    
+        </div>
+        </xpath>
+        <!-- <xpath expr="//td[@t-if='display_discount']" position="after">
+             <td  class="text-right">
+                <span t-field="line.second_discount"/>
+             </td>   
+        </xpath>                     -->
+    </template>
+
+
+</odoo>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="general_ledger_report" model="ir.actions.report">
+        <field name="name">General Ledger Report</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">general_ledger_report_customizationv.general_ledger</field>
+        <field name="report_file">general_ledger_report_customizationv.general_ledger</field>
+        <field name="binding_model_id" ref="model_account_move"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

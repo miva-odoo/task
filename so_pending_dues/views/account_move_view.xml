@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <!-- inherit form view for account_move -->
+
+    <record id="account_move_inherited" model="ir.ui.view">
+        <field name="name">account move form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='to_check']" position="after">
+                <field name="is_panding" />
+               
+            </xpath>
+        </field>
+   </record>
+
+</odoo>

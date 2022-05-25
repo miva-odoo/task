@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_partner_credit_limit_views" model="ir.ui.view">
+        <field name="name">res partner</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"></field>
+        <field name="arch" type="xml">
+            <xpath expr="//group/field[@name='property_account_payable_id']" position="after">
+                <field name="credit_limit" groups="tgi_credit_limit_customization.override_credit_limits_user"/>
+                <field name="total_receivable" groups="tgi_credit_limit_customization.override_credit_limits_user"/>
+                <!-- <field name="credit_limit_approver"/> -->
+                <!-- <field name="override_credit_limit" groups="tgi_credit_limit_customization.override_credit_limits_user"/> -->
+            </xpath>
+        </field>
+    </record>
+</odoo>

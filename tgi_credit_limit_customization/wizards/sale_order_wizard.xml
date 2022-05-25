@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_view_sale_wizard_from" model="ir.ui.view">
+        <field name="name">saleorder.wizard.from</field>
+        <field name="model">saleorder.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Sale Order Wizard">
+                <h3>Credit Limit Exceeded! You need to increase the credit limit of this customer to proceed</h3>     
+                <footer>
+                    <button name="action_email_send" string="Send by Email" type="object"
+                     class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_view_sale_wizard" model="ir.actions.act_window">
+        <field name="name">saleorder wizard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">saleorder.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="action_view_sale_wizard_from"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <!-- inherit form report for sale.order -->
+
+    <template id="report_saleorder" inherit_id="sale.report_saleorder_document">
+        <!-- <xpath expr="//t[@t-call='web.external_layout']" position="inside"> -->
+        <xpath expr="//div[@class='clearfix']" position="after">
+            <div class="w-50 p-3">
+            <t t-if="doc.is_panding">
+                <h3>Pending Dues</h3>
+
+                <!-- <t t-set="pending_so_values" t-value=""/> -->
+                <!-- <t t-esc="pending_so_values['name']"/> -->
+                
+                <table class="table table-sm table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Sale Order NO</th>
+                            <th> Amount</th> 
+                            
+                        </tr>
+                    </thead>
+                    <tbody class="sale_tbody">
+                        <t t-foreach="doc.get_pending_so_values()" t-as="so_val">
+                            <t t-set="name" t-value="so_val['name']"/>
+                            <t t-set="amount" t-value="so_val['amount']"/>
+                        <t t-if="amount > 0">
+                          <tr>
+                            <td >
+                                <t t-esc="name"/>
+                             </td>
+                            <td>
+                                <t t-esc="amount"/>
+                            </td>
+                            
+                         </tr>  
+                        </t>
+                        </t>
+                    </tbody>
+                </table> 
+            </t>  
+        </div>  
+        </xpath>            
+    </template>
+</odoo>

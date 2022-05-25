@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="journal_entry_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang or doc.invoice_user_id.sudo().lang)"/>
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <h1 class="text-center">
+                            <strong t-field="doc.company_id"/>
+                        </h1>
+                        <br/>
+                        <div class="text-center">
+                            <strong>JOURNAL</strong>
+                        </div>
+                        
+                        <div class="row mt32 mb32" style="margin-top:3rem;">
+                            <div class="col-auto col-3 mw-100 mb-2">
+                                Journal No.:
+                                <strong t-field="doc.name"/>
+                            </div>
+                            <div class="col-auto col-3 mw-100 mb-2">
+                                Accounting Date:
+                                <strong t-field="doc.date"/>
+                            </div>
+                        </div>
+                        <div class="mb32">
+                            Journal Type:
+                            <strong t-field="doc.journal_id"/>
+                        </div>
+                        <table class="table table-sm o_main_table">
+                            <thead style="display: table-row-group">
+                                <tr>
+                                    <th name="th_account" class="text-left">Account</th>
+                                    <th name="th_debit" class="text-left">
+                                        Debit
+                                        <br/>
+                                        (Rs.)
+                                    </th>
+                                    <th name="th_credit" class="text-left">
+                                        Credit
+                                        <br/>
+                                        (Rs.)
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="doc.line_ids" t-as="line">
+                                    <tr>
+                                        <td>
+                                            <span t-field="line.account_id"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.debit"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.credit"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <th>Total </th>
+
+                                <th t-esc="sum(doc.line_ids.mapped('debit'))" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                <th t-esc="sum(doc.line_ids.mapped('credit'))" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                            </tbody>
+                        </table> 
+                        <div>
+                            Narration:
+                            <strong t-field="doc.ref"/>
+                        </div>
+                        <div class="row  text-center" style="margin-top:5rem;">
+                            <div class="col-3">
+                                Prepared by:
+                            </div>
+                            <div class="col-3">
+                                SR.FD EXE/AUX SEC
+                            </div>
+                            <div class="col-3">
+                                FD
+                            </div>
+                            <div class="col-3">
+                                GS
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

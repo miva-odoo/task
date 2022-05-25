@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="general_ledger">
+        <t t-call="web.html_container">
+            <t t-call="web.basic_layout">
+                <t t-set="company" t-value="env.company"/>
+
+                <div class="text-center">
+                    <div t-field="company.partner_id" t-options='{"widget" : "contact" , "fields" : ["address" ,"phone", "email","name"] , "no_marker" : true}'/>
+                </div>
+                
+<!--               
+                    <t t-esc="abc"/> -->
+                    <!-- <t t-esc="options"/> -->
+                         <!-- <div class="text-center mt-3">
+                        <t t-out="env['account.account'].browse(abc[1].get('name'))" />
+                    </div> -->
+
+                   
+                    <!-- <t t-esc="abc[0].get('name')"/>
+                     -->
+                 
+
+                     <div class="text-center mt-3">
+                        <t t-out="to_date"/> to <t t-out="date_from"/>
+                    </div>
+
+                           
+                    <div class="mt-4">
+                    <table class="table table-sm o_main_table mt-3 table-borderless">
+                        <tbody class="border-top">
+                        <tr class="border-bottom">
+                            <td>Account name</td>
+                            <td> Date </td>
+                            <td> Particulars </td>
+                            <td> Vch Type </td>
+                            <td> Vch No. </td>
+                            <td> Debit </td>
+                            <td> Credit </td>
+                        </tr>
+                        <!-- <t t-esc="abc"/> -->
+                       
+                        <t t-foreach="abc" t-as="values">
+                            <!-- <t t-esc="values.get(accp)"/>> -->
+                            
+                            <!-- <t  t-esc="values"/> -->
+                            <!-- <t t-foreach="values" t-as="value"> -->
+                               
+                            <tr>
+                                <td>
+                                        <t t-esc="values.get('name')"/>
+                                </td>
+                                <td>
+                                    <t t-if="not values.get('class')" t-esc="values.get('columns')[0]['name']"/>
+                                </td>
+                                
+                                <td>
+                                    
+                                    <!-- <t t-esc="values.get('lable')"/> -->
+                                </td>
+
+                                <td>  
+                                    <!-- <t t-esc="values.get('journal_id')"/> -->
+                                    <!-- <t t-if=" values.get('class')">
+                                        <t t-esc="values.get('columns')[1]['name']"/>
+                                    </t> -->
+                                </td>
+                                <td>
+                                    <t t-if=" not values.get('class')">
+                                        <t t-esc="values.get('columns')[1]['name']"/>
+                                    </t>
+                                   
+                                </td>
+                               
+                                <td>
+                                    <t t-if="values.get('columns')[0]['class'] == 'number'">
+                                        <t t-esc="values.get('columns')[0]['name']"/>
+                                    </t>
+                                </td>
+
+                                <td>
+                                    <t t-if="values.get('columns')[0]['class'] == 'number'">
+                                        <t t-esc="values.get('columns')[1]['name']"/>
+                                    </t>
+                                    
+                                </td>
+                                
+                            </tr>
+                            <!-- </t> -->
+                        </t>
+                        
+                        </tbody>
+                    </table>
+                    </div>
+                
+            </t>
+        </t>
+    </template>
+
+</odoo>
